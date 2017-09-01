@@ -8,9 +8,8 @@
         <meta name="author" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- CSS -->
-        <!--<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous"> -->
         <link rel="stylesheet" href={{asset('/css/pure-min.css')}} >
-        <link rel="stylesheet" href={{asset('/css/side-menu.css')}} >
+        <link rel="stylesheet" href={{asset('/css/style.css')}} >
 
         <!-- OGP -->
         <meta property="og:type" content="website">
@@ -22,6 +21,7 @@
 
     </head>
     <body>
+
         <div id="layout">
             <!-- Menu toggle -->
             <a href="#menu" id="menuLink" class="menu-link">
@@ -31,30 +31,31 @@
 
             <div id="menu">
                 <div class="pure-menu">
-                    <a class="pure-menu-heading" href="#">アンテナサイト</a>
-
+                    <a class="pure-menu-heading" href="/">さくら前線</a>
                     <ul class="pure-menu-list">
-                        <li class="pure-menu-item"><a href="#" class="pure-menu-link">新着記事</a></li>
-                        <li class="pure-menu-item"><a href="#" class="pure-menu-link">表示上位</a></li>
-                        <li class="pure-menu-item" class="menu-item-divided pure-menu-selected">
-                            <a href="#" class="pure-menu-link">Services</a>
+                        @section('sidebar')
+                        <li class="pure-menu-item">
+                            <a href="/start/" class="pure-menu-link">新着投稿</a>
                         </li>
-                        <li class="pure-menu-item"><a href="#" class="pure-menu-link">問合せ</a></li>
+                        <li class="pure-menu-item">
+                            <a href="/layouts/" class="pure-menu-link">よく読まれる</a>
+                        </li>
+                        <li class="pure-menu-item">
+                            <a href="/base/" class="pure-menu-link">お気に入り</a>
+                        </li>
+                        @show
                     </ul>
                 </div>
             </div>
-            <div class="wrapper">
-                <header>
-                    <h1>サイトネーム</h1>
-                </header>
-                @section('sidebar')
+            <div id="main">
+               <div class="header">
+                   <h1>ヘッダータイトル</h1>
+               </div>
 
-                @show
-                <div class="container">
-                    @yield('content')
-                </div><!-- End container -->
-            </div><!-- End wrapper -->
+               <div class="content">
+                   @yield('content')
+               </div>
+            </div>
         </div>
-        <script src={{asset('/js/ui.js')}}></script>
     </body>
 </html>

@@ -1,5 +1,12 @@
+@font-face {
+	font-family: 'Hannari';
+	src: url(../font/Hannari.otf);
+}
+
 body {
     color: #777;
+    font-family: 'Hannari';
+    background-color: #D7C4BB;
 }
 
 .pure-img-responsive {
@@ -27,6 +34,7 @@ This is the parent `<div>` that contains the menu and the content area.
     position: relative;
     left: 0;
     padding-left: 0;
+
 }
     #layout.active #menu {
         left: 150px;
@@ -39,20 +47,17 @@ This is the parent `<div>` that contains the menu and the content area.
 /*
 The content `<div>` is where all your content goes.
 */
-.content {
-    margin: 0 auto;
-    padding: 0 2em;
-    max-width: 800px;
-    margin-bottom: 50px;
-    line-height: 1.6em;
-}
 
 .header {
-     margin: 0;
-     color: #333;
-     text-align: center;
-     padding: 2.5em 2em 0;
-     border-bottom: 1px solid #eee;
+    position: fixed;
+    width: 100%;
+    height: 8em;
+    margin: 0;
+    color: #333;
+    text-align: center;
+    padding: 2.5em 2em 0;
+    background-color: #D7C4BB;
+    border-bottom: 1px solid #eee;
  }
     .header h1 {
         margin: 0.2em 0;
@@ -61,7 +66,7 @@ The content `<div>` is where all your content goes.
     }
      .header h2 {
         font-weight: 300;
-        color: #ccc;
+        color: #333;
         padding: 0;
         margin-top: 0;
     }
@@ -71,6 +76,14 @@ The content `<div>` is where all your content goes.
     font-weight: 300;
     color: #888;
 }
+.content {
+    margin: auto;
+    padding: 10.5em 2em;
+    max-width: 800px;
+    margin-bottom: 50px;
+    line-height: 1.6em;
+}
+
 
 
 
@@ -87,7 +100,8 @@ appears on the left side of the page.
     left: 0;
     bottom: 0;
     z-index: 1000; /* so the menu or its navicon stays above all content */
-    background: #191818;
+    background: #B19693;
+    font-size: 1.1em;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
@@ -95,7 +109,7 @@ appears on the left side of the page.
     All anchors inside the menu should be styled like this.
     */
     #menu a {
-        color: #999;
+        color: #fff;
         border: none;
         padding: 0.6em 0 0.6em 0.6em;
     }
@@ -114,14 +128,15 @@ appears on the left side of the page.
     */
     #menu .pure-menu ul,
     #menu .pure-menu .menu-item-divided {
-        border-top: 1px solid #333;
+        border-top: 1px solid #eee;
     }
         /*
         Change color of the anchor links on hover/focus.
         */
         #menu .pure-menu li a:hover,
         #menu .pure-menu li a:focus {
-            background: #333;
+            background: #FEDFE1;
+            color: #777;
         }
 
     /*
@@ -129,7 +144,7 @@ appears on the left side of the page.
     */
     #menu .pure-menu-selected,
     #menu .pure-menu-heading {
-        background: #1f8dd6;
+        background: #E87A90;
     }
         /*
         This styles a link within a selected menu item `<li>`.
@@ -174,7 +189,7 @@ small screens.
 
     .menu-link:hover,
     .menu-link:focus {
-        background: #000;
+        background: ##FEDFE1;
     }
 
     .menu-link span {
