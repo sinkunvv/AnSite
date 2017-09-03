@@ -35,7 +35,7 @@
                     <ul class="pure-menu-list">
                         @section('sidebar')
                         <li class="pure-menu-item">
-                            <a href="/start/" class="pure-menu-link">新着投稿</a>
+                            <a href="/rss/" class="pure-menu-link">新着投稿</a>
                         </li>
                         <li class="pure-menu-item">
                             <a href="/layouts/" class="pure-menu-link">よく読まれる</a>
