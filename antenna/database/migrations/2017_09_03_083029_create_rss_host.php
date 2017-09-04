@@ -16,7 +16,8 @@ class CreateRssHost extends Migration
         Schema::create('rss_host', function (Blueprint $table) {
             $table->increments('id');
             $table->string('blog_name');
-            $table->string('blog_address');
+            $table->string('blog_url');
+            $table->string('rss_feed');
             $table->timestamps();
         });
     }
