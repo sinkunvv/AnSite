@@ -10,5 +10,15 @@
 @stop
 
 @section('content')
-    
+    <table>
+        <tbody>
+            @foreach($post as $dt)
+            <tr>
+                <td>{{ $dt->pub_date->format('H:i:s') }}</td>
+                <td><a href={{ $dt->post_url }}>{{ $dt->post_title }}</a></td>
+                <td><a href={{ $dt->rssHost->blog_url }}>{{ $dt->rssHost->blog_name }}</a></td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 @stop

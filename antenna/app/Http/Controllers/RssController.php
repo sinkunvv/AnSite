@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\RssHost as RS;
 use App\RssPost as RP;
+use DateTime;
 
-class RssReaderController extends Controller {
+class RssController extends Controller {
+
+    // read function
     public function read() {
         $json = [];
         $url = [];
@@ -24,33 +27,38 @@ class RssReaderController extends Controller {
             if(isset($rss_ver) && $rss_ver == '2.0') {
                 // RSS2.0 read
                 foreach ($rss->channel->item as $value) {
-                    $rss_array = array("title"=>(string)$value->title, "url"=>(string)$value->link, "blog_id"=>$blog_id);
+                    $rss_array = array(
+                                         "title"=>(string)$value->title
+                                        ,"url"=>(string)$value->link
+                                        ,"pubDate"=>new DateTime($value->pubDate)
+                                        ,"blog_id"=>$blog_id
+                                      );
                     $json[] = json_encode($rss_array, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES );
                 }
             }else{
                 //RSS1.0 read
                 foreach ($rss->item as $value) {
-                    $rss_array = array("title"=>(string)$value->title, "url"=>(string)$value->link, "blog_id"=>$blog_id);
+                    $rss_array = array(
+                                         "title"=>(string)$value->title
+                                        ,"url"=>(string)$value->link
+                                        ,"pubDate"=>new DateTime($value->children('http://purl.org/dc/elements/1.1/')->date)
+                                        ,"blog_id"=>$blog_id
+                                      );
                     $json[] = json_encode($rss_array, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES );
                 }
             }
-            // insert
-            $this->insert($json);
 
+            // insert
+            $insert = RP::insert($json);
             $json = [];
         }
     }
 
-    // insert method
-    private function insert($json) {
-        foreach ($json as  $value) {
-            $RP = new RP;
-            $array = json_decode($value, false);
-            $RP->post_title = $array->title;
-            $RP->post_url = $array->url;
-            $RP->blog_id = $array->blog_id;
-            $RP->pub_date = "2000-01-01";
-            $RP->save();
-        }
+    // show function
+    public function show() {
+        $post = RP::orderBy('pub_date', 'desc')->get();
+         return view('home',compact('post'));
     }
+
+
 }

@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/rss', 'RssReaderController@read');
+Route::get('/rss', 'RssController@show');
