@@ -1,11 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
+\File::requireOnce(__DIR__.'.\..\..\Libs\feedwriter\Feed.php');
+\File::requireOnce(__DIR__.'.\..\..\Libs\feedwriter\Item.php');
+\File::requireOnce(__DIR__.'.\..\..\Libs\feedwriter\ATOM.php');
+\File::requireOnce(__DIR__.'.\..\..\Libs\feedwriter\RSS1.php');
+\File::requireOnce(__DIR__.'.\..\..\Libs\feedwriter\RSS2.php');
 
 use Illuminate\Http\Request;
 use App\RssHost as RS;
 use App\RssPost as RP;
+use \FeedWriter\ATOM;
+use \FeedWriter\RSS1;
+use \FeedWriter\RSS2;
+
 use DateTime;
+date_default_timezone_set('Asia/Tokyo');
 
 class RssController extends Controller {
 
@@ -60,5 +70,43 @@ class RssController extends Controller {
          return view('home',compact('post'));
     }
 
+    public function rssfeed(Request $request) {
+        $type = $request->input('feed');
+
+        switch ($type) {
+            case 'atom':
+                $feed = new ATOM;
+                break;
+            case 'rss1':
+                $feed = new RSS1;
+                break;
+            case 'rss2':
+                $feed = new RSS2;
+                break;
+            default:
+                $feed = new RSS2;
+                break;
+        }
+
+        $feed->setTitle('さくら前線');
+        $feed->setLink('https://桜前線.com');
+        $feed->setDate(new DateTime());
+
+        $post = RP::orderBy('pub_date', 'desc')->take(50)->get();
+        foreach ($post as $value) {
+            $item = $feed->createNewItem();
+            $item->setTitle($value->post_title);
+            $item->setLink($value->post_url);
+            $item->setDate(strtotime($value->pub_date));
+            $item->setAuthor($value->rssHost->blog_name);
+            $feed->addItem($item);
+        }
+
+        $xml = $feed->generateFeed();
+        $dom = new \DOMDocument;
+        $dom->loadXML($xml);
+        $dom->encoding = 'UTF-8';
+        return response($dom->saveXML(), 200)->header('Content-Type', 'application/xml');
+    }
 
 }

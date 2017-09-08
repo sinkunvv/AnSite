@@ -11,8 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('/rss', 'RssController@show');
+Route::get('/', 'RssController@show');
+Route::get('/rss', 'RssController@rssfeed');
