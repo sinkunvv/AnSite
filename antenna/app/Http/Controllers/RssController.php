@@ -8,7 +8,7 @@ namespace App\Http\Controllers;
 \File::requireOnce(__DIR__.'.\..\..\Libs\feedwriter\RSS2.php');
 
 use Illuminate\Http\Request;
-use App\RssHost as RS;
+use App\RssHost as RH;
 use App\RssPost as RP;
 use \FeedWriter\ATOM;
 use \FeedWriter\RSS1;
@@ -23,7 +23,7 @@ class RssController extends Controller {
     public function read() {
         $json = [];
         $url = [];
-        $rss_host = RS::all();
+        $rss_host = RH::all();
 
         foreach ($rss_host as $value) {
             // rss host info
@@ -57,7 +57,6 @@ class RssController extends Controller {
                     $json[] = json_encode($rss_array, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES );
                 }
             }
-
             // insert
             $insert = RP::insert($json);
             $json = [];
@@ -66,8 +65,9 @@ class RssController extends Controller {
 
     // show function
     public function show() {
+        $blog = RH::orderBy('id', 'asc')->get();
         $post = RP::orderBy('pub_date', 'desc')->get();
-         return view('home',compact('post'));
+         return view('home',compact('blog','post'));
     }
 
     public function rssfeed(Request $request) {

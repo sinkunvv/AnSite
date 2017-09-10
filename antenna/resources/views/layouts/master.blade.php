@@ -35,10 +35,10 @@
                     <ul class="pure-menu-list">
                         @section('sidebar')
                         <li class="pure-menu-item">
-                            <a href="/rss/" class="pure-menu-link">新着投稿</a>
+                            <a href="#new" class="pure-menu-link">新着投稿</a>
                         </li>
                         <li class="pure-menu-item">
-                            <a href="/layouts/" class="pure-menu-link">よく読まれる</a>
+                            <a href="/read/" class="pure-menu-link">更新</a>
                         </li>
                         <li class="pure-menu-item">
                             <a href="/base/" class="pure-menu-link">お気に入り</a>
@@ -57,5 +57,6 @@
                </div>
             </div>
         </div>
+        <script src="{{asset('/js/ui.js')}} "></script>
     </body>
 </html>

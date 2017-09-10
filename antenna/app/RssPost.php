@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class RssPost extends Model
 {
     protected $table = 'rss_post';
-    protected $dates = ['pub_date'];
+    //protected $dates = ['pub_date'];
 
     // insert method
     public static function insert($json) {
@@ -21,7 +21,9 @@ class RssPost extends Model
                 $RP->post_title = $array->title;
                 $RP->post_url = $array->url;
                 $RP->blog_id = $array->blog_id;
+
                 $RP->pub_date = $array->pubDate->date;
+//                dd($RP);
                 $RP->save();
             }
         }
