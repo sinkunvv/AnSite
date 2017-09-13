@@ -14,7 +14,7 @@
 @section('content')
     <div id="new" class="anchor">
         <h1>新着記事</h1>
-        <div class="rss-table">
+        <div class="rss-table top">
             <table>
                 <thead>
                     <tr>
@@ -34,10 +34,11 @@
         </div>
     </div>
 
+    <div class="blogs">
     @foreach ($blog as $blog_dt)
         <div id="{{$blog_dt->blog_name}}" class="anchor">
             <h1>{{$blog_dt->blog_name}}</h1>
-            <div class="rss-table">
+            <div class="rss-table blogs">
                 <table>
                     <thead>
                         <tr>
@@ -59,4 +60,5 @@
             </div>
         </div>
     @endforeach
+    </div>
 @stop

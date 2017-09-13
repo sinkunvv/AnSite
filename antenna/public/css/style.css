@@ -52,7 +52,7 @@ The content `<div>` is where all your content goes.
     position: fixed;
     width: 100%;
     height: 100px;
-    margin: 0;
+    margin: auto;
     color: #333;
     text-align: center;
     padding: 30px 0px 0px 0px;
@@ -64,18 +64,7 @@ The content `<div>` is where all your content goes.
         font-size: 60px;
         font-weight: 30px;
     }
-     .header h2 {
-        font-weight: 30px;
-        color: #333;
-        padding: 0;
-        margin-top: 0;
-    }
 
-.content-subhead {
-    margin: 50px 0 20px 0;
-    font-weight: 300;
-    color: #888;
-}
 .content {
     margin: auto;
     padding: 120px 25px;
@@ -90,102 +79,66 @@ The content `<div>` is where all your content goes.
     }
 
 
-
-
-/*
-The `#menu` `<div>` is the parent `<div>` that contains the `.pure-menu` that
-appears on the left side of the page.
-*/
-
 #menu {
-    margin-left: -150px; /* "#menu" width */
+    margin-left: -150px;
     width: 150px;
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
-    z-index: 1000; /* so the menu or its navicon stays above all content */
+    z-index: 1000;
     background: #B19693;
     font-size: 20px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
-    /*
-    All anchors inside the menu should be styled like this.
-    */
+
     #menu a {
         color: #fff;
         border: none;
         padding: 10px 0px 10px 10px;
     }
 
-    /*
-    Remove all background/borders, since we are applying them to #menu.
-    */
      #menu .pure-menu,
      #menu .pure-menu ul {
         border: none;
         background: transparent;
     }
 
-    /*
-    Add that light border to separate items into groups.
-    */
     #menu .pure-menu ul,
     #menu .pure-menu .menu-item-divided {
         border-top: 1px solid #eee;
     }
-        /*
-        Change color of the anchor links on hover/focus.
-        */
+
         #menu .pure-menu li a:hover,
         #menu .pure-menu li a:focus {
             background: #FEDFE1;
             color: #777;
         }
 
-    /*
-    This styles the selected menu item `<li>`.
-    */
     #menu .pure-menu-selected,
     #menu .pure-menu-heading {
         background: #E87A90;
     }
-        /*
-        This styles a link within a selected menu item `<li>`.
-        */
+
         #menu .pure-menu-selected a {
             color: #fff;
         }
 
-    /*
-    This styles the menu heading.
-    */
     #menu .pure-menu-heading {
         font-size: 110%;
         color: #fff;
         margin: 0;
     }
 
-/* -- Dynamic Button For Responsive Menu -------------------------------------*/
-
-/*
-The button to open/close the Menu is custom-made and not part of Pure. Here's
-how it works:
-*/
-
-/*
-`.menu-link` represents the responsive menu toggle that shows/hides on
-small screens.
-*/
 .menu-link {
     position: fixed;
-    display: block; /* show this only on small screens */
+    display: block;
     top: 0;
-    left: 0; /* "#menu width" */
+    left: 0;
     background: #000;
     background: rgba(0,0,0,0.7);
-    font-size: 10px; /* change this value to increase/decrease button size */
+    font-size: 10px;
     z-index: 10;
     width: 20px;
     height: auto;
@@ -226,12 +179,18 @@ small screens.
         height:500px;
         overflow-y: scroll;
         overflow-x: hidden;
-
         background-color: #eee;
 }
+
+    #new {
+        width: 100%;
+    }
+    .blogs {
+        width: 100%;
+        margin: auto;
+    }
     .rss-table table {
         width: 100%;
-
         overflow: scroll;
     }
 
@@ -243,31 +202,32 @@ small screens.
         background-color: #91989F;
     }
     .rss-table td {
+        max-width:1px;
         color: #1C1C1C;
         text-align: left;
+        overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        -webkit-text-overflow: ellipsis; /*Safari用*/
+        -o-text-overflow: ellipsis; /*Opera用*/
     }
 
     .rss-table td.news {
-        padding-left: 5px;
-        padding-right: 5px;
+        width: 35px;
+        max-width: 40px;
         color: red;
     }
 
     .anchor {
-        margin-top:-10em;
-        padding-top:10em;
+        float: left;
+        width: 50%;
+        margin-top: -120px;
+        padding-top: 120px;
     }
-/* -- Responsive Styles (Media Queries) ------------------------------------- */
 
-/*
-Hides the menu at `48em`, but modify this based on your app's needs.
-*/
 @media screen and (min-width: 769px) {
-
     #layout {
-        padding-left: 150px; /* left col width "#menu" */
+        padding-left: 150px;
         left: 0;
     }
     #menu {
@@ -285,12 +245,6 @@ Hides the menu at `48em`, but modify this based on your app's needs.
     }
 }
 @media screen and (max-width: 769px) {
-    /* Only apply this when the window is small. Otherwise, the following
-    case results in extra padding on the left:
-        * Make the window small.
-        * Tap the menu to trigger the active state.
-        * Make the window large again.
-    */
     .header {
             height: 50px;
             padding-left: 0px;
@@ -322,12 +276,9 @@ Hides the menu at `48em`, but modify this based on your app's needs.
         height:250px;
     }
 
-    .rss-table td {
-        width: 20px;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
     .anchor {
+        float:  none;
+        width: 100%;
         margin-top:-5px;
         padding-top:5px;
     }
