@@ -18,14 +18,13 @@
             <table>
                 <thead>
                     <tr>
-                        <th>時刻</th>
-                        <th>タイトル</th>
+                        <th colspan="2">タイトル</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($post as $dt)
                     <tr>
-                        <td>{{ date('h:i', strtotime($dt->pub_date)) }}</td>
+                        <td class="news">New</td>
                         <td><a href={{ $dt->post_url }} target="_blank">{{ $dt->post_title }}</a></td>
                         {{-- <td><a href={{ $dt->rssHost->blog_url }}>{{ $dt->rssHost->blog_name }}</a></td> --}}
                     </tr>
@@ -42,15 +41,14 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>時刻</th>
-                            <th>タイトル</th>
+                            <th colspan="2">タイトル</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($post as $post_dt)
                             @if ($post_dt->blog_id == $blog_dt->id)
                                 <tr>
-                                    <td>{{ date('m-d h:i', strtotime($post_dt->pub_date)) }}</td>
+                                    <td class="news">New</td>
                                     <td><a href={{ $post_dt->post_url }} target="_blank">{{ $post_dt->post_title }}</a></td>
                                     {{-- <td><a href={{ $dt->rssHost->blog_url }}>{{ $dt->rssHost->blog_name }}</a></td> --}}
                                 </tr>

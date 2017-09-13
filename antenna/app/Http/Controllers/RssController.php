@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-\File::requireOnce(__DIR__.'.\..\..\Libs\feedwriter\Feed.php');
-\File::requireOnce(__DIR__.'.\..\..\Libs\feedwriter\Item.php');
-\File::requireOnce(__DIR__.'.\..\..\Libs\feedwriter\ATOM.php');
-\File::requireOnce(__DIR__.'.\..\..\Libs\feedwriter\RSS1.php');
-\File::requireOnce(__DIR__.'.\..\..\Libs\feedwriter\RSS2.php');
+\File::requireOnce(__DIR__.'./../../Libs/feedwriter/Feed.php');
+\File::requireOnce(__DIR__.'./../../Libs/feedwriter/Item.php');
+\File::requireOnce(__DIR__.'./../../Libs/feedwriter/ATOM.php');
+\File::requireOnce(__DIR__.'./../../Libs/feedwriter/RSS1.php');
+\File::requireOnce(__DIR__.'./../../Libs/feedwriter/RSS2.php');
 
 use Illuminate\Http\Request;
 use App\RssHost as RH;

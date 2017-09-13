@@ -49,7 +49,7 @@
             </div>
             <div id="main">
                <div class="header">
-                   <h1>ヘッダータイトル</h1>
+                   <h1>さくら前線</h1>
                </div>
 
                <div class="content">
