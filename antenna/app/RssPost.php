@@ -21,9 +21,7 @@ class RssPost extends Model
                 $RP->post_title = $array->title;
                 $RP->post_url = $array->url;
                 $RP->blog_id = $array->blog_id;
-
                 $RP->pub_date = $array->pubDate->date;
-//                dd($RP);
                 $RP->save();
             }
         }

@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', 'RssController@show');
+Route::get('/', 'RssController@index');
 Route::get('/rss', 'RssController@rssfeed');
-Route::get('/read', 'RssController@read');
+Route::get('/read', 'RssController@update');

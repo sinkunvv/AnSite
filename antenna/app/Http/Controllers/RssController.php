@@ -19,8 +19,31 @@ date_default_timezone_set('Asia/Tokyo');
 
 class RssController extends Controller {
 
+    // show function
+    public function index(Request $request) {
+        $post_id = $request->input('id');
+        $blog = RH::orderBy('id', 'asc')->get();
+        $post = RP::orderBy('pub_date', 'desc')->take(50)->get();
+
+        if(isset($post_id)) {
+            $pickup = RP::where('id', $post_id)->get();
+            $post = $pickup->merge($post);
+        }
+
+        foreach ($blog as $dt) {
+            $blogs = RP::where('blog_id', $dt->id)->orderBy('pub_date', 'desc')->take(30)->get();
+            if(isset($blog_post)) {
+                $blog_post = $blogs->merge($blog_post);
+            }else{
+                $blog_post = $blogs;
+            }
+        }
+
+        return view('home',compact('post','post_id','blog','blog_post'));
+    }
+
     // read function
-    public function read() {
+    public function update() {
         $json = [];
         $url = [];
         $rss_host = RH::all();
@@ -63,15 +86,9 @@ class RssController extends Controller {
         }
     }
 
-    // show function
-    public function show() {
-        $blog = RH::orderBy('id', 'asc')->get();
-        $post = RP::orderBy('pub_date', 'desc')->get();
-         return view('home',compact('blog','post'));
-    }
-
     public function rssfeed(Request $request) {
         $type = $request->input('feed');
+        $url = url('/');
 
         switch ($type) {
             case 'atom':
@@ -89,14 +106,14 @@ class RssController extends Controller {
         }
 
         $feed->setTitle('さくら前線');
-        $feed->setLink('https://桜前線.com');
+        $feed->setLink($url);
         $feed->setDate(new DateTime());
 
         $post = RP::orderBy('pub_date', 'desc')->take(50)->get();
         foreach ($post as $value) {
             $item = $feed->createNewItem();
             $item->setTitle($value->post_title);
-            $item->setLink($value->post_url);
+            $item->setLink($url.'/?id='.$value->id);
             $item->setDate(strtotime($value->pub_date));
             $item->setAuthor($value->rssHost->blog_name);
             $feed->addItem($item);

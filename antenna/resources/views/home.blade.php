@@ -46,7 +46,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($post as $post_dt)
+                        @foreach($blog_post as $post_dt)
                             @if ($post_dt->blog_id == $blog_dt->id)
                                 <tr>
                                     <td class="news">New</td>
