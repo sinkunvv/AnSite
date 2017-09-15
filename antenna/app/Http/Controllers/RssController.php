@@ -26,6 +26,7 @@ class RssController extends Controller {
         $post = RP::orderBy('pub_date', 'desc')->take(50)->get();
 
         if(isset($post_id)) {
+            RP::viewCountUp($post_id);
             $pickup = RP::where('id', $post_id)->get();
             $post = $pickup->merge($post);
         }
@@ -81,7 +82,7 @@ class RssController extends Controller {
                 }
             }
             // insert
-            $insert = RP::insert($json);
+            RP::insert($json);
             $json = [];
         }
     }

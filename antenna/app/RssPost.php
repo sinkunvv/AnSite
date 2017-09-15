@@ -30,4 +30,12 @@ class RssPost extends Model
     public function rssHost() {
          return $this->belongsTo('App\RssHost', 'blog_id');
     }
+
+    public static function viewCountUp($post_id) {
+        $exist = RssPost::where('id', $post_id)->exists();
+        if($exist) {
+            $post = RssPost::where('id', $post_id)
+                ->increment('user_view');
+        }
+    }
 }
