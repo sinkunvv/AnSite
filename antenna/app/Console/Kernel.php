@@ -26,7 +26,6 @@ class Kernel extends ConsoleKernel
     {
         $schedule
         ->call('RssController@update')
-        ->withoutOverlapping()
         ->everyMinute();
     }
 
