@@ -38,6 +38,7 @@ class RssUpdate extends Command
      */
     public function handle()
     {
-        RC::update();
+        $RC = new RC();
+        $RC->update();
     }
 }

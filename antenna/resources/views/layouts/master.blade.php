@@ -37,19 +37,21 @@
                         <li class="pure-menu-item">
                             <a href="#new" class="pure-menu-link">新着投稿</a>
                         </li>
-                        <li class="pure-menu-item">
-                            <a href="/read/" class="pure-menu-link">更新</a>
-                        </li>
-                        <li class="pure-menu-item">
-                            <a href="/base/" class="pure-menu-link">お気に入り</a>
-                        </li>
                         @show
                     </ul>
                 </div>
             </div>
             <div id="main">
                <div class="header">
-                   <h1>さくら前線</h1>
+                   <div class="pure-menu pure-menu-horizontal">
+                       <h1>さくら前線</h1>
+                       <ul id="rss-link" class="pure-menu-list">
+                           <li class="pure-menu-item"><a href="/rss?type=atom" class="pure-menu-link">Atom</a></li>
+                           <li class="pure-menu-item"><a href="/rss?type=rss1" class="pure-menu-link">RSS1.0</a></li>
+                           <li class="pure-menu-item"><a href="/rss?type=rss2" class="pure-menu-link">RSS2.0</a></li>
+                       </ul>
+                   </div>
+
                </div>
 
                <div class="content">
