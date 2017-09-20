@@ -44,7 +44,7 @@ class RssController extends Controller {
     }
 
     // read function
-    public function update() {
+    public static function update() {
         $json = [];
         $url = [];
         $rss_host = RH::all();

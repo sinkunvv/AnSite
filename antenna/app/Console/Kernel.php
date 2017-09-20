@@ -25,7 +25,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule
-        ->call('RssController@update')
+        ->command('rss:update')
+        ->withoutOverlapping()
         ->everyMinute();
     }
 
